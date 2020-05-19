@@ -1,0 +1,9 @@
+[settings]
+DEBUG=True
+SECRET_KEY=example_secret_key
+TEMPLATE_DEBUG=%{DEBUG}s
+DB=booktime
+DB_USER=user
+DB_PASS=password
+DB_HOST=127.0.0.1
+DB_PORT=5432
