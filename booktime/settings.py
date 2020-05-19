@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('RANDOMSECRETKEY', default='asdfghjkl;')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=True, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -162,7 +162,7 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        'booktime': {
+        'main': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': True,
@@ -172,3 +172,14 @@ LOGGING = {
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+if not DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="username")
+    EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+    EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool)
+    EMAIL_PORT = config("EMAIL_PORT", cast=int)
+    EMAIL_HOST = config("EMAIL_HOST")
+
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -6,3 +6,5 @@
 **/log_files/
 **/static/
 **/migrations/
+**/.history/
+**/.vscode/
