@@ -3,6 +3,11 @@ from django.db import models
 # Create your models here.
 
 
+class ActiveManager(models.Manager):
+    def active(self):
+        return self.filter(active=True)
+
+
 class Product(models.Model):
     name = models.CharField(max_length=32)
     description = models.TextField(blank=True)
@@ -12,9 +17,14 @@ class Product(models.Model):
     in_stock = models.BooleanField(default=True)
     date_updated = models.DateTimeField(auto_now=True)
 
+    objects = ActiveManager()
+
     class Meta:
         db_table = 'products'
         ordering = ['-date_updated', 'price']
+
+    def __str__(self):
+        return self.name
 
 
 class ProductImage(models.Model):
@@ -27,6 +37,9 @@ class ProductImage(models.Model):
     class Meta:
         db_table = 'productimages'
 
+    def __str__(self):
+        return self.product.name
+
 
 class ProductTag(models.Model):
     products = models.ManyToManyField(Product, blank=True)
@@ -37,3 +50,6 @@ class ProductTag(models.Model):
 
     class Meta:
         db_table = 'producttags'
+
+    def __str__(self):
+        return self.name
