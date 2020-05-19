@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main.Apps.MainConfig'
+    'main.apps.MainConfig'
 ]
 
 MIDDLEWARE = [
@@ -161,7 +161,7 @@ LOGGING = {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': True,
-        }
+        },
         'booktime': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',

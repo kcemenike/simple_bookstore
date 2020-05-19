@@ -4,3 +4,5 @@
 **/config.py
 **/settings.ini
 **/log_files/
+**/static/
+**/migrations/
