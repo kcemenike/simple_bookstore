@@ -25,7 +25,7 @@ class TestSignal(TestCase):
 
         with open("main/fixtures/learning-python-38-thumb.jpg", "rb",) as f:
             expected_content = f.read()
-            # print(expected_content)
+            print(type(expected_content))
             assert image.thumbnail.read() == expected_content
 
         image.thumbnail.delete(save=False)
